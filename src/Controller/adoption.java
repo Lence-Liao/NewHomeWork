@@ -58,20 +58,52 @@ public class adoption extends javax.swing.JFrame {
 
         jLabel2.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 35)); // NOI18N
         jLabel2.setText("寵物領養系統");
+        
+        JButton btnNewButton = new JButton("前往銷售系統");
+        btnNewButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		dispose();
+        		new doguk().setVisible(true);
+        	}
+        });
+        btnNewButton.setBackground(new Color(255, 105, 180));
+        btnNewButton.setForeground(new Color(0, 0, 0));
+        btnNewButton.setFont(new Font("新細明體", Font.PLAIN, 20));
+        
+        JButton btnNewButton_1 = new JButton("返回登入系統");
+        btnNewButton_1.setBackground(new Color(255, 105, 180));
+        btnNewButton_1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		dispose();
+        		new login().setVisible(true);
+        	}
+        });
+        btnNewButton_1.setFont(new Font("新細明體", Font.PLAIN, 20));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1Layout.setHorizontalGroup(
-        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-        			.addContainerGap(211, Short.MAX_VALUE)
+        	jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
         			.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
         			.addGap(178))
         );
         jPanel1Layout.setVerticalGroup(
         	jPanel1Layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(jPanel1Layout.createSequentialGroup()
-        			.addGap(18)
-        			.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addGap(18)
+        					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap())
         );
         jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +179,7 @@ public class adoption extends javax.swing.JFrame {
         		String Wat=waf1.getSelectedItem().toString();		       		
         		adopDog ad=new adopDog(Kind,Year,Sex,Per,Vac,Wat,Id2);        		
         		new impldog().update(ad);
+        		ta1.setText(new impldog().quely1());
         	}
         });
         btnupdate.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -174,6 +207,7 @@ public class adoption extends javax.swing.JFrame {
                 String Vac=vac.getSelectedItem().toString();
                 String Waf=waf.getSelectedItem().toString();
                 new  impldog().add(Kind, Year, Sex, Per, Vac, Waf);
+                ta1.setText(new impldog().quely1());
         	}
         });
         
@@ -287,22 +321,22 @@ public class adoption extends javax.swing.JFrame {
         							.addPreferredGap(ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
         							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
         							.addGap(37)
-        							.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
-        								.addGroup(Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+        							.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING, false)
+        								.addGroup(jPanel2Layout.createSequentialGroup()
         									.addGap(12)
         									.addComponent(per1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
         									.addGap(29)
         									.addComponent(vac1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
         									.addGap(27)
         									.addComponent(waf1, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
-        								.addGroup(Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-        									.addGap(39)
+        								.addGroup(jPanel2Layout.createSequentialGroup()
+        									.addGap(35)
         									.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-        									.addGap(69)
+        									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         									.addComponent(lblNewLabel_3_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-        									.addPreferredGap(ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+        									.addGap(71)
         									.addComponent(lblNewLabel_4_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-        									.addGap(15)))
+        									.addGap(16)))
         							.addGap(172))
         						.addGroup(jPanel2Layout.createSequentialGroup()
         							.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
@@ -359,7 +393,11 @@ public class adoption extends javax.swing.JFrame {
         						.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
         							.addComponent(jLabel1_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
         							.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
+        							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(lblNewLabel_3_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(lblNewLabel_4_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
@@ -374,11 +412,7 @@ public class adoption extends javax.swing.JFrame {
         					.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblNewLabel_8, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         						.addComponent(id2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        					.addGap(19)
-        					.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblNewLabel_3_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(lblNewLabel_4_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))))
+        					.addGap(43)))
         			.addGap(16)
         			.addComponent(btnupdate, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
@@ -411,6 +445,7 @@ public class adoption extends javax.swing.JFrame {
         	public void mouseClicked(MouseEvent e) {
         		int delete =Integer.parseInt(id1.getText());
         		new impldog().delete(delete);
+        		ta1.setText(new impldog().quely1());
         		
         	}
         });
@@ -491,12 +526,10 @@ public class adoption extends javax.swing.JFrame {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(10)
-        					.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 672, Short.MAX_VALUE)))
+        			.addGap(20)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+        				.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 672, Short.MAX_VALUE))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
@@ -505,12 +538,12 @@ public class adoption extends javax.swing.JFrame {
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(jPanel3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
-        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+        				.addGroup(layout.createSequentialGroup()
         					.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        					.addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)))
         			.addContainerGap())
         );
         getContentPane().setLayout(layout);

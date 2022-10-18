@@ -12,18 +12,7 @@ public class impldog implements dogDao{
 
 	public static void main(String[] args) {
 		
-		  /*System.out.println(new impldog().quely1());
-		  System.out.println(new impldog().quelyId(1).);
-		 adopDog ad=new impldog().quelyId(2);
-		  ad.setKind("胖帥哥");*/
-		  new impldog().update(new adopDog());
-		  adopDog ad=new impldog().quelyId(6);
-		   System.out.println(ad.ak(ad)); 
-		  /* System.out.println(new impldog().quely2());
-		  new impldog().quely2();*/
-		  
-		  
-		
+	
 	}
 	@Override
 	public void add(String kind, int year, String sex, String per, String vac, String waf) {

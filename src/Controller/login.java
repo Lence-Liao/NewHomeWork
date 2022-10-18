@@ -3,6 +3,7 @@ package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -11,6 +12,7 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Dao.DbConnection;
+import Dao.implUserlogin;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -53,7 +55,6 @@ public class login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         BtnAdoption = new javax.swing.JButton();
-        施工中 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,15 +137,12 @@ public class login extends javax.swing.JFrame {
                 BtnAdoptionMouseClicked(evt);
             }
         });
-
-        施工中.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 20)); // NOI18N
-        施工中.setText("施工中");
         
         JButton btnregister = new JButton("註冊會員");
         btnregister.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		registerPage rp = new registerPage();
-        		rp.show();
+        		new registerPage().setVisible(true);;
+        		
         	}
         });
         btnregister.setForeground(SystemColor.desktop);
@@ -177,9 +175,7 @@ public class login extends javax.swing.JFrame {
         						.addComponent(BtnRest, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         						.addComponent(BtnAdoption, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         						.addComponent(btnregister, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(施工中)
-        					.addGap(8))
+        					.addGap(72))
         				.addGroup(jPanel2Layout.createSequentialGroup()
         					.addComponent(jLabel6, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
         					.addContainerGap())))
@@ -205,9 +201,7 @@ public class login extends javax.swing.JFrame {
         			.addGap(53)
         			.addComponent(btnregister, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(施工中)
-        				.addComponent(BtnLogin))
+        			.addComponent(BtnLogin)
         			.addGap(12)
         			.addComponent(BtnAdoption, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -238,24 +232,23 @@ public class login extends javax.swing.JFrame {
 
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
 
-    	try{
-            Connection con = DbConnection.getLogin();
+    	try{        
         String username = Account.getText();
         String password = Password.getText();
-        Statement stm = con.createStatement();
-        String sql = "select * from login where username='"+username+"' and Password = '"+password+"'";
-        ResultSet rs = stm.executeQuery(sql);
-        
-        if(rs.next()){
-            /*dispose();
-            doguk DOG = new doguk();
-            DOG.show();*/
+
+        boolean x=new implUserlogin().query(username, password);
+        if(username.isEmpty() || password.isEmpty()) {
+        	JOptionPane.showMessageDialog(this, "帳號或密碼沒有輸入");
+        }   
+        else if(x==true){
+            dispose();
+            new doguk().setVisible(true);
         }else{
              JOptionPane.showMessageDialog(this, "帳號或密碼輸入錯誤");
              Account.setText("");
              Password.setText("");
         }
-        con.close();
+        
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -264,22 +257,24 @@ public class login extends javax.swing.JFrame {
 
     private void BtnAdoptionMouseClicked(java.awt.event.MouseEvent evt) {
         try{
-        Connection con=DbConnection.getLogin();
         String username = Account.getText();
         String password = Password.getText();
-        Statement stm = con.createStatement();
-        String sql = "select * from login where username='"+username+"' and Password = '"+password+"'";
-        ResultSet rs = stm.executeQuery(sql);        
-        if(rs.next()){
-            dispose();
-            adoption ado = new adoption();
-            ado.show();
+        if(username.isEmpty() || password.isEmpty()) {
+        	JOptionPane.showMessageDialog(this, "帳號或密碼沒有輸入");
+        	return;
+        }
+        boolean havedata=new implUserlogin().query(username, password);
+        
+        if(havedata){
+            
+        	dispose();
+            new adoption().setVisible(true);           
         }else{
              JOptionPane.showMessageDialog(this, "帳號或密碼輸入錯誤");
              Account.setText("");
              Password.setText("");
         }
-        con.close();
+
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -341,5 +336,4 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel 施工中;
 }
