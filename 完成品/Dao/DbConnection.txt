@@ -1,0 +1,22 @@
+public static Connection getDB() {
+		Connection conn=null;
+		
+		String url="jdbc:mysql://localhost:3306/adoption";
+		String user="root";
+		String password= "1234";
+		//String sql="insert into dog(kind,year, sex,per, vac,waf)value()";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn =DriverManager.getConnection(url, user, password);
+			
+		
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return conn;
+	}	
+

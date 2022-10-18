@@ -1,0 +1,42 @@
+btnupdate = new JButton("更新");
+        btnupdate.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		int Id2=Integer.parseInt(id2.getText());
+        		
+        		String Kind=kind1.getSelectedItem().toString();		
+        		int Year=Integer.parseInt(year1.getText());        		
+        		String Sex=sex1.getSelectedItem().toString();		
+        		String Per =per1.getSelectedItem().toString();		
+        		String Vac=vac1.getSelectedItem().toString();		
+        		String Wat=waf1.getSelectedItem().toString();		       		
+        		adopDog ad=new adopDog(Kind,Year,Sex,Per,Vac,Wat,Id2);        		
+        		new impldog().update(ad);
+        	}
+===============================================================================
+JButton btnadd = new JButton("新增");
+        btnadd.setFont(new Font("新細明體", Font.PLAIN, 25));
+        btnadd.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		String Kind= kind.getSelectedItem().toString();				
+                int Year=Integer.parseInt(year.getText());               
+                String Sex=sex.getSelectedItem().toString();		
+                String Per=per.getSelectedItem().toString();		
+                String Vac=vac.getSelectedItem().toString();
+                String Waf=waf.getSelectedItem().toString();
+                new  impldog().add(Kind, Year, Sex, Per, Vac, Waf);
+        	}
+================================================================================
+//ID收尋
+public void mouseClicked(MouseEvent e) {
+        		int Id1=Integer.parseInt(id1.getText());
+        		adopDog ad =new impldog().quelyId(Id1);
+        		ta1.setText(ad.ak(ad));
+===============================================================================
+btndetele = new JButton("ID刪除");
+        btndetele.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		int delete =Integer.parseInt(id1.getText());
+        		new impldog().delete(delete);

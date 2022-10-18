@@ -1,0 +1,22 @@
+ private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
+
+    	try{        
+        String username = Account.getText();
+        String password = Password.getText();
+
+        boolean x=new implUserlogin().query(username, password);
+        if(username.isEmpty() || password.isEmpty()) {
+        	JOptionPane.showMessageDialog(this, "帳號或密碼沒有輸入");
+        }   
+        else if(x==true){
+            dispose();
+            new doguk().setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(this, "帳號或密碼輸入錯誤");
+             Account.setText("");
+             Password.setText("");
+        }
+        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }

@@ -1,0 +1,10 @@
+btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Username = username.getText();
+				implUserlogin iu=new implUserlogin();
+				if (iu.query(Username)) {
+					username.setText("");
+				} else {
+					String Password = password.getText();					
+					iu.addlogin(new Userlogin(Username, Password));
+					dispose();
